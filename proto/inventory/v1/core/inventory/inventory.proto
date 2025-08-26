@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option go_package = "inventory-service/protocgen/inventory/v1/core/inventory";
+
+// Importing necessary dependencies
+import "inventory/v1/global/meta/meta.proto";
+
+service InventoryService {
+  rpc CheckStock(CheckStockRequest) returns (CheckStockResponse);
+  rpc ReserveStock(ReserveStockRequest) returns (ReserveStockResponse);
+  rpc ReleaseStock(ReleaseStockRequest) returns (ReleaseStockResponse);
+}
+
+message CheckStockRequest {
+  int32 product_id = 1;
+}
+
+message CheckStockResponse {
+  int32 product_id = 1;
+  int32 available_quantity = 2;
+  Meta meta = 4;
+}
+
+message ReserveStockRequest {
+  int32 product_id = 1;
+  int32 quantity = 2;
+  int32 user_id = 3;
+}
+
+message ReserveStockResponse {
+  Meta meta = 4;
+}
+
+message ReleaseStockRequest {
+  int32 product_id = 1;
+  int32 quantity = 2;
+  int32 user_id = 3;
+}
+
+message ReleaseStockResponse {
+  Meta meta = 4;
+}

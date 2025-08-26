@@ -1,0 +1,17 @@
+version: v2
+plugins:
+  - remote: buf.build/protocolbuffers/go
+    out: protocgen
+    opt: paths=source_relative
+  - remote: buf.build/grpc/go:v1.5.1
+    out: protocgen
+    opt: paths=source_relative
+  - remote: buf.build/protocolbuffers/js
+    out: ./generated
+    opt:
+      - import_style=commonjs
+      - binary
+  - remote: buf.build/grpc/node
+    out: ./generated
+    opt:
+      - grpc_js

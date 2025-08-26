@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+option go_package = "inventory-service/protocgen/inventory/v1/core/products";
+
+// Importing necessary dependencies
+import "inventory/v1/global/meta/meta.proto";
+
+service ProductsService {
+    rpc CreateProducts(CreateProductsRequest) returns (CreateProductsResponse);
+    rpc GetProducts(GetProductsRequest) returns (GetProductsResponse);
+    rpc ListProductss(ListProductssRequest) returns (ListProductssResponse);
+    rpc UpdateProducts(UpdateProductsRequest) returns (UpdateProductsResponse);
+    rpc DeleteProducts(DeleteProductsRequest) returns (DeleteProductsResponse);
+}
+
+message Products {
+    int64 id = 1;
+    string title = 2;
+    string content = 3;
+    repeated string tag = 5;
+}
+
+message CreateProductsRequest {
+    Products Products = 1;
+}
+
+message CreateProductsResponse {
+    Products Products = 1;
+    Meta meta = 2;
+}
+
+message GetProductsRequest {
+    int64 id = 1;
+}
+
+message GetProductsResponse {
+    Products Products = 1;
+    Meta meta = 2;
+}
+
+message ListProductssRequest {
+    PaginationRequest pagination = 1;
+    FilterRequest query = 2;
+}
+
+message ListProductssResponse {
+    repeated Products Productss = 1;
+    Meta meta = 3;
+}
+
+message UpdateProductsRequest {
+    Products Products = 1;
+}
+
+message UpdateProductsResponse {
+    Products Products = 1;
+    Meta meta = 2;
+}
+
+message DeleteProductsRequest {
+    int64 id = 1;
+}
+
+message DeleteProductsResponse {
+    Products Products = 1;
+    Meta meta = 2;
+}

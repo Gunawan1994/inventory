@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option go_package = "inventory-service/protocgen/inventory/v1/core/orders";
+
+// Importing necessary dependencies
+import "inventory/v1/global/meta/meta.proto";
+
+service OrderService {
+  rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
+  rpc CancelOrder(CancelOrderRequest) returns (CancelOrderResponse);
+  rpc GetOrder(GetOrderRequest) returns (GetOrderResponse);
+}
+
+message Order {
+  int32 id = 1;
+  int32 product_id = 2;
+  int32 user_id = 3;
+  string status = 4; // CREATED, CONFIRMED, CANCELED
+}
+
+message CreateOrderRequest {
+  int32 product_id = 1;
+  int32 quantity = 2;
+  int32 user_id = 3;
+}
+
+message CreateOrderResponse {
+  Order order = 1;
+  Meta meta = 2;
+}
+
+message CancelOrderRequest {
+  int32 order_id = 1;
+}
+
+message CancelOrderResponse {
+    Meta meta = 1;
+}
+
+message GetOrderRequest {
+  int32 order_id = 1;
+}
+
+message GetOrderResponse {
+  Order order = 1;
+  Meta meta = 2;
+}

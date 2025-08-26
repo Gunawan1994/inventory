@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+
+option go_package =  "inventory-service/protocgen/inventory/v1/core/user";
+
+// Importing necessary dependencies
+import "inventory/v1/global/meta/meta.proto";
+
+service UserService {
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+    rpc GetUser(GetUserRequest) returns (GetUserResponse);
+    rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
+    rpc UpdateArticle(UpdateUserRequest) returns (UpdateUserResponse);
+    rpc DeleteArticle(DeleteUserRequest) returns (DeleteUserResponse);
+}
+
+message User {
+    int64 id = 1;
+    string name = 2;
+    string email = 3;
+    string created_at = 4;
+    string updated_at = 5;
+}
+
+message CreateUserRequest {
+    User user = 1;
+}
+
+message CreateUserResponse {
+    User user = 1;
+    Meta meta = 2;
+}
+
+message GetUserRequest {
+    int64 id = 1;
+}
+
+message GetUserResponse {
+    User user = 1;
+    Meta meta = 2;
+}
+
+message ListUsersRequest {
+    PaginationRequest pagination = 1;
+    FilterRequest query = 2;
+}
+
+message ListUsersResponse {
+    repeated User user = 1;
+    Meta meta = 3;
+}
+
+message UpdateUserRequest {
+    User user = 1;
+}
+
+message UpdateUserResponse {
+    User user = 1;
+    Meta meta = 2;
+}
+
+message DeleteUserRequest {
+    int64 id = 1;
+}
+
+message DeleteUserResponse {
+    Meta meta = 1;
+}

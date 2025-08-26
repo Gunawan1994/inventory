@@ -1,0 +1,40 @@
+
+syntax="proto3";
+
+option go_package = "inventory-service/protocgen/inventory/v1/global/meta";
+
+import "google/protobuf/any.proto";
+
+
+message PaginationRequest {
+    int32 offset = 1;
+    int32 limit = 2;
+}
+
+message FilterRequest{
+    string filter = 1;
+    string order = 2;
+    string keyword = 3;
+}
+
+message PaginationResponse {
+    int32 offset = 1;
+    int32 limit = 2;
+    int64 total_pages = 3;
+    int64 total_rows = 4;
+    int64 total_row_per_page = 5;
+}
+
+message Meta {
+    int64 status_code = 1;
+    string message_code = 2;
+    string message = 3;
+    optional PaginationResponse pagination = 4;
+}
+
+message ResponseJson  {
+    Meta meta = 1;
+    optional google.protobuf.Any data = 2;
+}
+
+
